@@ -8,6 +8,7 @@ public class RollingBall : MonoBehaviour
     public float moveSpeed = 10f;
     private float xInput;
     private float yInput;
+    
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -21,6 +22,7 @@ public class RollingBall : MonoBehaviour
     void Update()
     {
         ProcessInputs();
+        
         if (Input.GetKey(KeyCode.Space))
         {
             rb.drag = 10f;
@@ -30,6 +32,7 @@ public class RollingBall : MonoBehaviour
             rb.drag = 0f;
         }
     }
+    
     private void FixedUpdate()
     {
         Move();
@@ -47,4 +50,5 @@ public class RollingBall : MonoBehaviour
         
         
     }
+   
 }
