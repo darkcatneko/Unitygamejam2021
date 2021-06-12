@@ -61,5 +61,12 @@ public class castOff : MonoBehaviour
         Incollider.enabled = true;
         OutCollider.enabled = false;
     }
+    private void CheckHard()
+    {
+        if (spikes[1].activeSelf && spikes[2].activeSelf && spikes[3].activeSelf && spikes[4].activeSelf && spikes[5].activeSelf && spikes[6].activeSelf )
+        {
+
+        }
+    }
 }
 
