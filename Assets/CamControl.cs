@@ -4,12 +4,47 @@ using UnityEngine;
 
 public class CamControl : MonoBehaviour
 {
-    public GameObject Player;
+    public Rigidbody Player;
     public float xOffset, yOffset, zOffset;
+    public float RotationSpeed = 15f;
     
+    void Start()
+    {
+        
+    }
+    //void LateUpdate()
+    //{
+    //    CamControler();
+    //}
     void Update()
     {
-        transform.position = Player.transform.position + new Vector3(xOffset, yOffset, zOffset);
-        transform.LookAt(Player.transform.position);
+        transform.position = Player.position ;
+        if (true)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                xOffset += Input.GetAxis("Mouse X") * RotationSpeed;
+                yOffset += Input.GetAxis("Mouse Y") * RotationSpeed;
+                if (yOffset<-35f)
+                {
+                yOffset = -35f;
+                }
+                else if(yOffset>60)
+                {
+                yOffset = 60f;
+                }
+               
+            }
+            
+            transform.rotation = Quaternion.Euler(yOffset, xOffset, 0f);
+        }
     }
+    //void CamControler()
+    //{
+    //    xOffset += Input.GetAxis("Mouse X") * RotationSpeed;
+    //    yOffset -= Input.GetAxis("Mouse Y") * RotationSpeed;
+    //    yOffset = Mathf.Clamp(yOffset, -35, 60);
+    //    transform.LookAt(Player.transform);
+    //    target.transform.rotation = Quaternion.Euler(yOffset, xOffset, 0);
+    //}
 }
