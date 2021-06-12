@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 7847309513277925315}
   - component: {fileID: 6986219400634126544}
   m_Layer: 0
-  m_Name: Sphere (1)
-  m_TagString: Untagged
+  m_Name: spikePre1
+  m_TagString: Spike
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
