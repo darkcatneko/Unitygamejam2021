@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class castOff : MonoBehaviour
 {
+    Renderer BallMat;[SerializeField] private Texture SoftB, HardB; 
+    public static bool HardCheck = false;
     public static float Countdown;
     public Vector3 spikeTPos; public Vector3 spikeRPos;
     [SerializeField] GameObject spike1, spike2, spike3, spike4, spike5, spike6;
@@ -17,11 +19,13 @@ public class castOff : MonoBehaviour
     {
         spikeprefab[0] = spikePre1; spikeprefab[1] = spikePre2; spikeprefab[2] = spikePre3; spikeprefab[3] = spikePre4; spikeprefab[4] = spikePre5; spikeprefab[5] = spikePre6;
         spikes = new GameObject[] { spike1, spike2, spike3, spike4, spike5, spike6 };
+        BallMat = this.gameObject.GetComponent<Renderer>();
     }
 
 
     void Update()
     {
+        CheckHard();
         for (int i = 0; i < 6; i++)
         {
             position[0, i] = spikes[i].transform.position;
@@ -54,7 +58,7 @@ public class castOff : MonoBehaviour
             {
                 spikes[i].SetActive(false);
                 Rigidbody clone = (Rigidbody)Instantiate(spikeprefab[i], position[0, i], Quaternion.Euler(position[0, i]));
-                clone.transform.LookAt(GameObject.Find("Player").transform);
+                //clone.transform.LookAt(GameObject.Find("Player").transform);
                 clone.AddExplosionForce(force, GameObject.Find("Player").transform.position, 5f);
             }
         }
@@ -63,9 +67,15 @@ public class castOff : MonoBehaviour
     }
     private void CheckHard()
     {
-        if (spikes[1].activeSelf && spikes[2].activeSelf && spikes[3].activeSelf && spikes[4].activeSelf && spikes[5].activeSelf && spikes[6].activeSelf )
+        if (spikes[1].activeSelf && spikes[2].activeSelf && spikes[3].activeSelf && spikes[4].activeSelf && spikes[5].activeSelf && spikes[0].activeSelf)
         {
-
+            HardCheck = true;
+            BallMat.material.mainTexture = HardB;  
+        }
+        else
+        {
+            HardCheck = false ;
+            BallMat.material.mainTexture = SoftB;
         }
     }
 }
