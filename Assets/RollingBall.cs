@@ -46,7 +46,7 @@ public class RollingBall : MonoBehaviour
     private void Move()
     {
         
-        rb.AddForce(new Vector3(xInput, 0f, yInput) * moveSpeed);
+        rb.AddForce(new Vector3(-xInput, 0f, -yInput) * moveSpeed);
         
         
     }
