@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class castOff : MonoBehaviour
 {
+    public ParticleSystem explotion;
     Renderer BallMat;[SerializeField] private Texture SoftB, HardB; 
     public static bool HardCheck = false;
     public static float Countdown;
@@ -51,7 +52,7 @@ public class castOff : MonoBehaviour
     //}
     private void triggerCastOff()
     {
-        
+        ParticleSystem partical =  Instantiate(explotion, transform.position, transform.rotation);
         for (int i = 0; i < 6; i++)
         {
             if (spikes[i].activeSelf)
