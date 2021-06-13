@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RollingBall : MonoBehaviour
 {
+    public static bool Fast = false;
     public float degreevalue = 1;
     public Rigidbody rb;
     public float moveSpeed = 1f;
@@ -23,6 +24,7 @@ public class RollingBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SpeedCheck();
         ProcessInputs();
         
         if (Input.GetKey(KeyCode.Space))
@@ -70,5 +72,18 @@ public class RollingBall : MonoBehaviour
     public static Vector2 DegreeToVector2(float degree)
     {
         return RadianToVector2(degree * Mathf.Deg2Rad);
+    }
+    private void SpeedCheck()
+    {
+        if (rb.velocity.x>18f)
+        {
+            Fast = true;
+            Invoke("Slowdown", 1f);
+        }
+    }
+
+    private void Slowdown()
+    {
+        Fast = false;
     }
 }

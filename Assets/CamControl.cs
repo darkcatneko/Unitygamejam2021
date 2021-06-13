@@ -32,10 +32,10 @@ public class CamControl : MonoBehaviour
                 {
                 yOffset = -35f;
                 }
-                else if(yOffset>60)
-                {
-                yOffset = 60f;
-                }
+                //else if(yOffset>60)
+                //{
+                //yOffset = 60f;
+                //}
                
             }
             
