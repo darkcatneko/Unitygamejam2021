@@ -5,7 +5,8 @@ using UnityEngine;
 public class CamControl : MonoBehaviour
 {
     public Rigidbody Player;
-    public float xOffset, yOffset, zOffset;
+    public static float xOffset, yOffset, zOffset;
+    [SerializeField] float degree;
     public float RotationSpeed = 15f;
     
     void Start()
@@ -18,12 +19,14 @@ public class CamControl : MonoBehaviour
     //}
     void Update()
     {
+        
         transform.position = Player.position ;
         if (true)
         {
             if (Input.GetMouseButton(0))
             {
                 xOffset += Input.GetAxis("Mouse X") * RotationSpeed;
+                degree = xOffset;
                 yOffset += Input.GetAxis("Mouse Y") * RotationSpeed;
                 if (yOffset<-35f)
                 {

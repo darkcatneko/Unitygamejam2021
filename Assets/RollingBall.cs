@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class RollingBall : MonoBehaviour
 {
+    public float degreevalue = 1;
     public Rigidbody rb;
-    public float moveSpeed = 10f;
-    private float xInput;
-    private float yInput;
-    
+    public float moveSpeed = 1f;
+    [SerializeField] float xInput;
+    [SerializeField] float yInput;
+    [SerializeField ]Vector2 ws = new Vector2();
+    Vector2 ad = new Vector2();
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -41,12 +43,22 @@ public class RollingBall : MonoBehaviour
     private void ProcessInputs()
     {
         xInput = Input.GetAxis("Horizontal");
+        //ws = new Vector2 (Mathf.Sin(CamControl.xOffset), Mathf.Cos(CamControl.xOffset));
+        //if (Mathf.Sin(CamControl.xOffset) != 0)
+        //{
+        //    xInput = xInput * Mathf.Cos(CamControl.xOffset);
+        //}
         yInput = Input.GetAxis("Vertical");
+        
+        //if (Mathf.Cos(CamControl.xOffset) != 0)
+        //{
+        //    yInput = yInput * Mathf.Sin(CamControl.xOffset);
+        //}
     }
     private void Move()
     {
-        
-        rb.AddForce(new Vector3(-xInput, 0f, -yInput) * moveSpeed);
+        degreevalue = CamControl.xOffset * Mathf.Deg2Rad;
+        rb.AddForce(new Vector3((-xInput*Mathf.Cos(-degreevalue)) +(-yInput*Mathf.Sin(degreevalue)), 0f, (-yInput* Mathf.Cos(degreevalue)) + (-xInput*Mathf.Sin(-degreevalue)))*moveSpeed);
         
         
     }
