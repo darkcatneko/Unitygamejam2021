@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class crystleBomb : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] GameObject BombCrystle,CrystleWall;
+    private void OnCollisionEnter(Collision collision)
     {
         
+        if (collision.gameObject.CompareTag("Player") && castOff.HardCheck == true)
+        {
+            BombCrystle.SetActive(true);
+            CrystleWall.SetActive(false);            
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
